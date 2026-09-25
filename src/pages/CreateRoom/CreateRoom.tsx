@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input } from "../../components/Input/Input";
 
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from "../../services/firebase";
+import { db, auth } from "../../services/firebase"; 
 import { useNavigate } from "react-router-dom";
 
 export const CreateRoom: React.FC = () => {
@@ -24,15 +24,27 @@ export const CreateRoom: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    try {
-      await addDoc(collection(db, 'rooms'), { ...formData, capacity: parseInt(formData.capacity)});
-      navigate('/', { state: { successMessage: 'Room successfully created!'}});
+    const currentUser = auth.currentUser;
 
-      setFormData({
-        name: '',
-        capacity: '',
-        description: ''
-      })
+    if (!currentUser || !currentUser.email) {
+      alert("You must be logged in to create a room.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, 'rooms'), { 
+        ...formData, 
+        capacity: parseInt(formData.capacity),
+        accessList: [
+          {
+            email: currentUser.email,
+            role: 'Admin'
+          }
+        ],
+        ownerId: currentUser.uid 
+      });
+
+      navigate('/', { state: { successMessage: 'Room successfully created!'}});
     } catch(error) {
       console.error("Error while room creating: ", error);
     }
@@ -45,7 +57,7 @@ export const CreateRoom: React.FC = () => {
         <p className="mt-2 text-gray-400">Add a new room for bookings</p>
       </header>
 
-      <form className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 flex flex-col gap-6" onSubmit={(event) => handleSubmit(event)}>
+      <form className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 flex flex-col gap-6" onSubmit={handleSubmit}>
         
         <Input 
           id="name"

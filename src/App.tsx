@@ -13,6 +13,7 @@ import { Dashboard } from './pages/Dashboard';
 import { Authentication } from './pages/Authentication';
 import { Layout } from './components/Layout';
 import { CreateRoom } from './pages/CreateRoom';
+import { RoomDetails } from './pages/RoomDetails';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -52,6 +53,7 @@ function App() {
 
           <Route path="/my-bookings" element={<div>Тут будуть мої бронювання</div>} />
           <Route path="/create-room" element={<CreateRoom />} />
+          <Route path='/room/:id' element={<RoomDetails />} />
         </Route>
         <Route 
           path='/auth'

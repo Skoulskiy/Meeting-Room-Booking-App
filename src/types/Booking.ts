@@ -1,8 +1,9 @@
-export interface Booking { 
-  id: string,
-  roomId: string,
-  userEmail: string,
-  startTime: string,
-  endTime: string,
-  description: string,
-};
+export interface Booking {
+  id: string;
+  roomId: string;
+  creatorId: string; 
+  title: string;
+  date: string;
+  startTime: string; 
+  endTime: string; 
+}
