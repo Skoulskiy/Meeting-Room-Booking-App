@@ -14,6 +14,7 @@ import { Authentication } from './pages/Authentication';
 import { Layout } from './components/Layout';
 import { CreateRoom } from './pages/CreateRoom';
 import { RoomDetails } from './pages/RoomDetails';
+import { MyBookings } from './pages/MyBookings';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -51,9 +52,9 @@ function App() {
             element={<Dashboard />}
           />
 
-          <Route path="/my-bookings" element={<div>Тут будуть мої бронювання</div>} />
           <Route path="/create-room" element={<CreateRoom />} />
           <Route path='/room/:id' element={<RoomDetails />} />
+          <Route path='/my-bookings' element={<MyBookings />} />
         </Route>
         <Route 
           path='/auth'
