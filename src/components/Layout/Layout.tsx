@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAppSelector } from "../../hooks/redux"
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
-import { NavLink, Outlet } from "react-router-dom";
+import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 
 import { IoExit } from "react-icons/io5";
 
@@ -20,7 +20,9 @@ export const Layout : React.FC = ( ) => {
     }
   }
 
-  const initial = user?.name ? user.name[0] : 'U'
+  const initial = user?.name ? user.name[0] : 'U';
+
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col">
@@ -28,7 +30,7 @@ export const Layout : React.FC = ( ) => {
         bg-gray-800 border-b border-gray-700
         px-6 py-4 flex justify-between
         items-center relative z-20">
-          <div className="text-xl font-bold text-white tracking-wide">
+          <div className="text-xl font-bold text-white tracking-wide cursor-pointer" onClick={() => navigate('/', {replace: true})}>
             Room<span className="text-blue-500">Book</span>
           </div>
 

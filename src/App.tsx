@@ -12,6 +12,7 @@ import { Loader } from './components/Loader';
 import { Dashboard } from './pages/Dashboard';
 import { Authentication } from './pages/Authentication';
 import { Layout } from './components/Layout';
+import { CreateRoom } from './pages/CreateRoom';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,7 +21,6 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      console.log('Firebase User:', firebaseUser);
       if (firebaseUser) {
         dispatch(
           setUser({
@@ -51,7 +51,7 @@ function App() {
           />
 
           <Route path="/my-bookings" element={<div>Тут будуть мої бронювання</div>} />
-          <Route path="/create-room" element={<div>Тут буде форма створення кімнати</div>} />
+          <Route path="/create-room" element={<CreateRoom />} />
         </Route>
         <Route 
           path='/auth'
