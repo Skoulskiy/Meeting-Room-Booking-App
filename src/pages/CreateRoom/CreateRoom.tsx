@@ -3,6 +3,7 @@ import { Input } from "../../components/Input/Input";
 
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from "../../services/firebase";
+import { useNavigate } from "react-router-dom";
 
 export const CreateRoom: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ export const CreateRoom: React.FC = () => {
     capacity: '', 
     description: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -23,7 +26,7 @@ export const CreateRoom: React.FC = () => {
 
     try {
       await addDoc(collection(db, 'rooms'), { ...formData, capacity: parseInt(formData.capacity)});
-      alert('success');
+      navigate('/', { state: { successMessage: 'Room successfully created!'}});
 
       setFormData({
         name: '',
@@ -31,7 +34,7 @@ export const CreateRoom: React.FC = () => {
         description: ''
       })
     } catch(error) {
-      console.error("Помилка додавання документа: ", error);
+      console.error("Error while room creating: ", error);
     }
   }
 

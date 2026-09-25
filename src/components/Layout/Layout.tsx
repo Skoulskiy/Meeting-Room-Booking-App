@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
 import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 
+
 import { IoExit } from "react-icons/io5";
 
 
@@ -34,7 +35,7 @@ export const Layout : React.FC = ( ) => {
             Room<span className="text-blue-500">Book</span>
           </div>
 
-          <nav className="hidden md: flex gap-6 items-center">
+          <nav className="md: flex gap-6 items-center">
             <NavLink 
               to="/" 
               className={({ isActive }) => `transition-colors ${isActive ? "text-blue-400 font-medium" : "text-gray-400 hover:text-white"}`}
