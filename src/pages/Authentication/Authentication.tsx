@@ -45,10 +45,11 @@ export const Authentication : React.FC = () => {
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
+
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-       
-        if (auth.currentUser) {
-          await updateProfile(auth.currentUser, {
+        
+        if (userCredential.user) {
+          await updateProfile(userCredential.user, {
             displayName: name
           });
         }

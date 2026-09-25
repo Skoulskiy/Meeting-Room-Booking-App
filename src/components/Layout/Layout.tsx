@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAppSelector } from "../../hooks/redux"
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebase";
-import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 
 import { IoExit } from "react-icons/io5";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Room } from "../../types";
-import { addDoc, arrayUnion, collection, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, arrayUnion, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { auth, db } from "../../services/firebase";
 import { useNavigate, useParams } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader"; 
