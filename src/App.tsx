@@ -19,6 +19,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      console.log('Firebase User:', firebaseUser);
       if (firebaseUser) {
         dispatch(
           setUser({
