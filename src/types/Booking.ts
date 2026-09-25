@@ -6,4 +6,5 @@ export interface Booking {
   date: string;
   startTime: string; 
   endTime: string; 
+  participants: string[];
 }
