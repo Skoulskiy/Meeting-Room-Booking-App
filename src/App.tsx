@@ -11,6 +11,7 @@ import { Loader } from './components/Loader';
 
 import { Dashboard } from './pages/Dashboard';
 import { Authentication } from './pages/Authentication';
+import { Layout } from './components/Layout';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -43,11 +44,15 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
       <Routes>
-        <Route 
-          path='/'
-          element={isAuthenticated ? <Dashboard /> : <Navigate to="/auth" replace />}
-        />
+        <Route element={isAuthenticated ? <Layout /> : <Navigate to="/auth" replace />}>
+          <Route 
+            path='/'
+            element={<Dashboard />}
+          />
 
+          <Route path="/my-bookings" element={<div>Тут будуть мої бронювання</div>} />
+          <Route path="/create-room" element={<div>Тут буде форма створення кімнати</div>} />
+        </Route>
         <Route 
           path='/auth'
           element={!isAuthenticated ? <Authentication /> : <Navigate to="/" replace />}
