@@ -35,7 +35,7 @@ export const MyBookings : React.FC = () => {
         const loadedBookings = res.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
-        }));
+        } as Booking));
 
         loadedBookings.sort((a: any, b: any) => {
           if(a.date === b.date) {
@@ -99,7 +99,10 @@ export const MyBookings : React.FC = () => {
       </div>
 
       {(!bookings || bookings.length === 0) ? (
-        <div className="bg-gray-800 border-2 border-dashed border-gray-700 rounded-2xl p-12 flex flex-col items-center justify-center text-gray-500 shadow-lg">
+        <div className="
+          bg-gray-800 border-2 border-dashed border-gray-700
+          rounded-2xl p-12 flex flex-col items-center 
+          justify-center text-gray-500 shadow-lg">
           <p className="text-xl mb-2 text-gray-400">You have no upcoming meetings.</p>
         </div>
       ) : (
@@ -110,13 +113,20 @@ export const MyBookings : React.FC = () => {
             return (
               <div 
                 key={booking.id} 
-                className="bg-gray-800 border border-gray-700 rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-gray-600 transition-colors shadow-md"
+                className="
+                bg-gray-800 border border-gray-700 rounded-2xl p-6 
+                flex flex-col sm:flex-row justify-between items-start 
+                sm:items-center gap-4 hover:border-gray-600
+                transition-colors shadow-md"
               >
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-bold text-white">{booking.title}</h3>
                     {isCreator && (
-                      <span className="bg-blue-500/20 text-blue-400 px-2.5 py-0.5 rounded text-xs font-bold border border-blue-500/20">
+                      <span className="
+                        bg-blue-500/20 text-blue-400 px-2.5 py-0.5 rounded 
+                        text-xs font-bold border border-blue-500/20"
+                      >
                         Host
                       </span>
                     )}
@@ -132,14 +142,20 @@ export const MyBookings : React.FC = () => {
                   {isCreator ? (
                     <button 
                       onClick={() => openCancelModal(booking.id)} 
-                      className="w-full sm:w-auto px-4 py-2 bg-red-500/10 hover:bg-red-500 hover:text-white text-red-500 border border-red-500/50 rounded-lg text-sm font-semibold transition-colors"
+                      className="
+                        w-full sm:w-auto px-4 py-2 bg-red-500/10 hover:bg-red-500 hover:text-white 
+                        text-red-500 border border-red-500/50 rounded-lg text-sm 
+                        font-semibold transition-colors"
                     >
                       Cancel Meeting
                     </button>
                   ) : (
                     <button 
                       onClick={() => openLeaveModal(booking.id)}
-                      className="w-full sm:w-auto px-4 py-2 bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white border border-gray-600 rounded-lg text-sm font-semibold transition-colors"
+                      className="
+                        w-full sm:w-auto px-4 py-2 bg-gray-700 hover:bg-gray-600 
+                        text-gray-300 hover:text-white border border-gray-600 rounded-lg 
+                        text-sm font-semibold transition-colors"
                     >
                       Leave Meeting
                     </button>
